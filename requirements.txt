@@ -1,5 +1,6 @@
 langchain
 python-dotenv
 langchain-community
-langchain openai
+langchain-openai
 mysql-connector-python
+streamlit
