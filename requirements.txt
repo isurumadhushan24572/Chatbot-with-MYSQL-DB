@@ -3,3 +3,5 @@ python-dotenv
 langchain-community
 langchain-openai
 mysql-connector-python
+streamlit
+streamlit-chat
