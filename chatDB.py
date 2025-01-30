@@ -68,7 +68,8 @@ def SQL_chain(db):
 def final_response(user_query,chat_history,db):
     sql_chain = SQL_chain(db)
 
-    template = """Based on the table schema below, question, sql query, and sql response, write a natural language response.
+    template = """Based on the table schema below, question, sql query, and sql response, write a natural language response and give out as table format.:
+    {schema}
 
     Question: {question}
     SQL Query: {query}
