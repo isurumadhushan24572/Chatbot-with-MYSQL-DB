@@ -59,15 +59,15 @@ Save OpenAI API Key inside .env file
   OPENAI_API_KEY=your_openai_api_key
   ```
 
-Run Chatbot.py file
+Run ChatDB.py file
 
   ```
-  streamlit run charDB.py
+  streamlit run chatDB.py
   ```
 
 ## Usage
 
-- The chatbot processes user input, extracts relevant keywords, and queries the MySQL database.
+- The chatDB processes user input, extracts relevant keywords, and queries the MySQL database.
 - If the answer is available in the database, it fetches and returns the result.
 - If additional context is needed, the chatbot leverages GPT-3.5-turbo to generate a response based on structured data.
 
