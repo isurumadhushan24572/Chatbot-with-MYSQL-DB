@@ -91,7 +91,7 @@ Modify `config.py` to update:
 For any questions or support, reach out via:
 
 - Email: [Personal Email](isuruadg850@gmail.com)
-- LinkedIn: [www.linkedin.com/in/isuru-madhushan-096878273](www.linkedin.com/in/isuru-madhushan-096878273)
+- LinkedIn: [Linkedin](www.linkedin.com/in/isuru-madhushan-096878273)
 
 ---
 
