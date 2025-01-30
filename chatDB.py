@@ -47,12 +47,14 @@ def SQL_chain(db):
     Answer : show tables;
     Question: {question}
 
+    Your Turn:
     Sql Query:
     """
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    llm = ChatOpenAI(temperature=0.5)   
+    llm = ChatOpenAI(temperature=0.5,
+                     model = "gpt-3.5-turbo")   
 
     def get_schema(_):    # For the RunnablePassthrough towork function should be consist with at least one parameter
         return db.get_table_info()
@@ -66,8 +68,7 @@ def SQL_chain(db):
 def final_response(user_query,chat_history,db):
     sql_chain = SQL_chain(db)
 
-    template = """Based on the table schema below, question, sql query, and sql response, write a natural language response:
-    {schema}
+    template = """Based on the table schema below, question, sql query, and sql response, write a natural language response.
 
     Question: {question}
     SQL Query: {query}
@@ -76,7 +77,6 @@ def final_response(user_query,chat_history,db):
     prompt_response = ChatPromptTemplate.from_template(template)
 
     llm = ChatOpenAI(temperature=0.5,
-                     max_tokens=100,
                      model = 'gpt-3.5-turbo')
     
     def get_schema(_):
@@ -94,12 +94,6 @@ def final_response(user_query,chat_history,db):
     | StrOutputParser()
     )
     
-
-
-
-
-
-
     
 load_dotenv() # Load the OpenAI API key from the environment variable
 
@@ -153,12 +147,12 @@ if user_query is not None:
     st.session_state.chat_history.append(HumanMessage(content=user_query))
 
     with st.chat_message("Human"):
-        st.markdown(user_query)
+        st.write(user_query)
 
     with st.chat_message("AI"):
         full_chain = final_response(user_query,st.session_state.chat_history,st.session_state.db)
         response = full_chain.invoke({"question":user_query,"chat_history":st.session_state.chat_history})
-        st.markdown(response) 
+        st.write(response) 
 
     st.session_state.chat_history.append(AIMessage(content=response)) # Add the AI's response to the message history     
 
