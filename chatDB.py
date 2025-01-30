@@ -1,10 +1,10 @@
 import streamlit as st                          # Create interactive web application
 from streamlit_chat import message              # Display the chat messages
-from dotenv import load_dotenv                  # Load the open API key from the environment variable
-import os                                       # Access the environment variable
-from langchain.chat_models import ChatOpenAI 
+from dotenv import load_dotenv                  # Load the environment variable to the python environment
+import os                                       # Access the environment variable which is load to the python environment
+# from langchain.chat_models import ChatOpenAI    # Import the ChatOpenAI model
 from sqlalchemy import create_engine
-from langchain_community.utilities import SQLDatabase
+from langchain_community.utilities import SQLDatabase      # Import the SQLDatabase
 from langchain_core.output_parsers import StrOutputParser  # Get the Out Put as a String
 from langchain_core.runnables import RunnablePassthrough   
 from langchain_openai import ChatOpenAI                    # Importing the OpenAI Chat Model
