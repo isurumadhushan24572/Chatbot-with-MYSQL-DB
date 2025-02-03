@@ -8,6 +8,7 @@ from langchain_community.utilities import SQLDatabase      # Import the SQLDatab
 from langchain_core.output_parsers import StrOutputParser  # Get the Out Put as a String
 from langchain_core.runnables import RunnablePassthrough   
 from langchain_openai import ChatOpenAI                    # Importing the OpenAI Chat Model
+from langchain_groq import ChatGroq                        # Impoerting Groq provide llm models 
 from langchain_core.prompts import ChatPromptTemplate  
 from langchain.schema import SystemMessage, HumanMessage, AIMessage # Import the message schema    
 
@@ -37,6 +38,7 @@ def SQL_chain(db):
 
     template = """
     Based on the schema below wirte Sql queries to answer the following question:
+    Generate an SQL query for the following request:\n{question}\nOnly return the SQL query without any explanations or formatting:
     {schema}   
 
     Conversation Chat History:{chat_history}
@@ -53,8 +55,11 @@ def SQL_chain(db):
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    llm = ChatOpenAI(temperature=0.5,
-                     model = "gpt-3.5-turbo")   
+    # llm = ChatOpenAI(temperature=0.5,
+    #                  model = "gpt-3.5-turbo")   
+
+    llm = ChatGroq(model="llama3-8b-8192",
+                   temperature = 0.5)
 
     def get_schema(_):    # For the RunnablePassthrough towork function should be consist with at least one parameter
         return db.get_table_info()
@@ -77,8 +82,11 @@ def final_response(user_query,chat_history,db):
 
     prompt_response = ChatPromptTemplate.from_template(template)
 
-    llm = ChatOpenAI(temperature=0.5,
-                     model = 'gpt-3.5-turbo')
+    # llm = ChatOpenAI(temperature=0.5,
+    #                  model = 'gpt-3.5-turbo')
+
+    llm = ChatGroq(model="llama3-8b-8192",
+                   temperature = 0.5)
     
     def get_schema(_):
         return db.get_table_info()
