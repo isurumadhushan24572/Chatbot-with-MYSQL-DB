@@ -5,3 +5,4 @@ langchain-openai
 mysql-connector-python
 streamlit
 streamlit-chat
+langchain-groq
